@@ -470,12 +470,12 @@ def run_all_unit_tests():
 
 ####################################################################################################
 
-def setup_logger(name_logfile, logs_dir, also_stdout=False):
+def setup_logger(logs_dir, also_stdout=False):
     name_logfile = name_logfile.replace(';', '#')
     name_logfile = name_logfile.replace(':', '_')
     logger = logging.getLogger(name_logfile)
     formatter = logging.Formatter('%(asctime)s: %(message)s', datefmt='%Y/%m/%d %H:%M:%S')
-    fileHandler = logging.FileHandler(os.path.join(logs_dir, name_logfile), mode='w')
+    fileHandler = logging.FileHandler(os.path.join(logs_dir, 'run.log'), mode='w')
     fileHandler.setFormatter(formatter)
     if also_stdout:
         streamHandler = logging.StreamHandler()
