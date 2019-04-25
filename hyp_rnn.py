@@ -9,7 +9,7 @@ import math
 import argparse
 from datetime import datetime
 now = datetime.now()
-
+from pathlib import Path
 
 def str2bool(answer):
     answer = answer.lower()
@@ -76,7 +76,7 @@ parser.add_argument("--c", type=float, help="c", default=1.0)
 
 parser.add_argument("--restore_model", type=str2bool, help="y/n: restore model", default='n')
 parser.add_argument("--restore_from_path", type=str, help="", default="")
-
+parse.add_argument('--logs_dir', required=True, help='directory for all logs for the experiment', type=Path)
 args = parser.parse_args()
 
 ######################### Parse arguments ####################################
@@ -196,24 +196,7 @@ additional_features_str = additional_features
 if additional_features != '':
     additional_features_str = additional_features + '_'
 
-tensorboard_name = args.base_name + '_' +\
-                   dataset + '_' +\
-                   'W' + str(word_dim) + 'd,' + str(word_init_avg_norm) + 'init_' + \
-                   cell_type + '_' + \
-                   'cellNonL' + cell_non_lin + '_' +\
-                   'SENT' + sent_geom + '_' + \
-                   'INP' + inputs_geom + '_' + \
-                   'BIAS' + bias_geom + fix_biases_str + '_' + mat_str +\
-                   'FFNN' + ffnn_geom + str(before_mlr_dim) + ffnn_non_lin + '_' +\
-                   additional_features_str + \
-                   drp_str +\
-                   'MLR' + mlr_geom + '_' + \
-                   reg_beta_str + \
-                   hyp_opt_str + \
-                   c_str +\
-                   'prje' + str(PROJ_EPS) + '_' + \
-                   'bs' + str(batch_size) + '_' +\
-                   burnin_str +  '__' + now.strftime("%H:%M:%S,%dM")
+tensorboard_name = str(args.logs_dir.absolute())
 
 name_experiment = tensorboard_name
 logger = util.setup_logger(name_experiment, logs_dir= os.path.join(root_path, 'logs/'), also_stdout=True)
