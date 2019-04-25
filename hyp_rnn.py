@@ -568,7 +568,7 @@ class HyperbolicRNNModel:
 
 
         self.summary_merged = tf.summary.merge_all()
-        self.test_summary_writer = tf.summary.FileWriter(tensorboard_name))
+        self.test_summary_writer = tf.summary.FileWriter(tensorboard_name)
 
 
     ###############################################################################################
