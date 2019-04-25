@@ -76,7 +76,7 @@ parser.add_argument("--c", type=float, help="c", default=1.0)
 
 parser.add_argument("--restore_model", type=str2bool, help="y/n: restore model", default='n')
 parser.add_argument("--restore_from_path", type=str, help="", default="")
-parse.add_argument('--logs_dir', required=True, help='directory for all logs for the experiment', type=Path)
+parser.add_argument('--logs_dir', required=True, help='directory for all logs for the experiment', type=Path)
 args = parser.parse_args()
 
 ######################### Parse arguments ####################################
