@@ -199,7 +199,7 @@ if additional_features != '':
 tensorboard_name = str(args.logs_dir.absolute())
 
 name_experiment = tensorboard_name
-logger = util.setup_logger(name_experiment, logs_dir= os.path.join(root_path, 'logs/'), also_stdout=True)
+logger = util.setup_logger(logs_dir=str(args.logs_dir.absolute()), also_stdout=True)
 logger.info('PARAMS :  ' + name_experiment)
 logger.info('')
 logger.info(args)
